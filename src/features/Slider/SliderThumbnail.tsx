@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { BiChevronLeft, BiChevronRight, BiPause, BiPlay } from "react-icons/bi";
 const images = [
   "/thumbnail/meala.jpg",
@@ -11,31 +11,34 @@ const images = [
 const SliderThumbnail = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+
   const prevSlide = () => {
-    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
+
   const nextSlide = () => {
-    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
+
   const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
   };
+
   const toggleAutoplay = () => {
-    setIsPlaying(!isPlaying);
+    setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
+
   useEffect(() => {
     let slideInterval: NodeJS.Timeout | null = null;
     if (isPlaying) {
-      slideInterval = setInterval(() => {
-        nextSlide();
-      }, 3000); // Change slide every 3 seconds
+      slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
     }
     return () => {
       if (slideInterval) {
         clearInterval(slideInterval);
       }
     };
-  }, [isPlaying, nextSlide]);
+  }, [isPlaying]);
 
   return (
     <section className="relative w-full max-w-6xl h-56 md:h-[550px] m-auto group">
@@ -56,9 +59,8 @@ const SliderThumbnail = () => {
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
-            className={`w-3 h-3 rounded-full cursor-pointer ${
-              slideIndex === currentIndex ? "bg-white" : "bg-gray-500"
-            }`}
+            className={`w-3 h-3 rounded-full cursor-pointer ${slideIndex === currentIndex ? "bg-white" : "bg-gray-500"
+              }`}
           ></div>
         ))}
       </div>

@@ -8,12 +8,11 @@ type Tprops = {
   editTodo: (createdAt: Date) => void;
 };
 const Todo = ({ props, toggleComplete, deleteTodo, editTodo }: Tprops) => {
-  const { task, completed, isEditing, createdAt, editedAt } = props;
+  const { task, completed, createdAt, editedAt } = props;
   return (
     <div
-      className={`text-white flex justify-between items-center mt-4 px-4 h-11 rounded-md ${
-        completed ? "bg-green-400" : "bg-purple-600 "
-      }`}
+      className={`text-white flex justify-between items-center mt-4 px-4 h-11 rounded-md ${completed ? "bg-green-400" : "bg-purple-600 "
+        }`}
     >
       {/* */}
       <div

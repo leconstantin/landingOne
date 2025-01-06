@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 type TaddTodo = {
-  addTodo: any;
+  addTodo: (task: string) => void;
 };
 const TodoForm = ({ addTodo }: TaddTodo) => {
   const [value, setValue] = useState("");
