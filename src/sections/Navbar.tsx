@@ -2,9 +2,10 @@ import Button from "@/components/Button";
 import { LuMenu } from "react-icons/lu";
 const navlinks = [
   { label: "Home", href: "#" },
-  { label: "Features", href: "#features" },
-  { label: "Integration", href: "#integration" },
-  { label: "FAQs", href: "#faqs" },
+  { label: "Local", href: "/local" },
+  { label: "More", href: "/more" },
+  { label: "Slider", href: "/slider" },
+  { label: "ToDo", href: "/todo" }
 ];
 export default function Navbar() {
   return (
